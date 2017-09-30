@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class LongestCommonPrefix{
 	public static String LongestCommonPrefix(String[] strs){
 		if (strs.length == 1 ){
