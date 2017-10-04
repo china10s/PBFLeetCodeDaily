@@ -3,7 +3,7 @@ public class SearchInsertPosition1{
 		int low = 0 ,high = nums.length;
 		while(low < high){
 			int mid = low + (high-low)/2;
-			if (nums[mid] > target){
+			if (nums[mid] >= target){
 				high = mid;
 			}
 			else{
@@ -13,7 +13,7 @@ public class SearchInsertPosition1{
 		return low;
 	}
 	public static void main(String[] args){
-		if (SearchInsertPosition1(new int[]{1,2,4,5},6) == 4){
+		if (SearchInsertPosition1(new int[]{1},1) == 0){
 			System.out.println("sucess");
 		}
 		else{
