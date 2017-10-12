@@ -12,7 +12,7 @@ public class ClimbingStairs1{
 			stepa = stepb-stepa;
 		}
 		return stepb;
-		
+
 	}
 	public static void main(String[] args){
 		System.out.println(climbingStairs(44));
