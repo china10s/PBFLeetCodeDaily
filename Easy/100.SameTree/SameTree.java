@@ -13,13 +13,18 @@ public class SamrTree{
 			return true;
 		}
 		else if( node1 !=null && node2 !=null){
-			return (isSameTree(node1.left,node2.left) && isSameTree(node1.right,node2.right));
+			if (node1.val == node2.value){
+				return (isSameTree(node1.left,node2.left) && isSameTree(node1.right,node2.right)); 
+			}
+			else{
+				return false;
+			}
 		}
 		else{
 			return false;
 		}
 	}
 	public static void main(String[] args){
-
+		
 	}
 }
