@@ -14,8 +14,6 @@ public class MedianOfTwoSortedArrays{
 		}
 	}
 	public static double findKth(int a[],int m,int[] b,int n,int k){
-		System.out.println("a:"+Arrays.toString(a));
-		System.out.println("b:"+Arrays.toString(b));
 		if (m>n){
 			return findKth(b,n,a,m,k);
 		}
@@ -23,8 +21,6 @@ public class MedianOfTwoSortedArrays{
 			return b[k-1];
 		}
 		if(k==1){
-			System.out.println("a:"+a[0]);
-			System.out.println("b:"+b[0]);
 			return Math.min(a[0],b[0]);
 		}
 		int pa = Math.min(k/2,m),pb=k-pa;
