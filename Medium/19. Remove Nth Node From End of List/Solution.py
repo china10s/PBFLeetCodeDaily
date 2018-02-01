@@ -11,19 +11,8 @@ class Solution:
         :type n: int
         :rtype: ListNode
         """
-        curNode = head
-        targetNode = head
-        targetBeforeNode = None
-        while curNode != None:
-            if n <= 0:
-                targetBeforeNode = targetNode
-                targetNode = targetNode.next
-            curNode = curNode.next
-            n = n-1
-        if targetBeforeNode == None:
-            head = head.next
-        else:
-            targetBeforeNode.next = targetNode.next
+
+
         # elif targetNode.next!=None:
         #     targetNode.next = targetNode.next.next
         # else:
