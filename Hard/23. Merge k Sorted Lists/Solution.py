@@ -10,80 +10,46 @@ class Solution:
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        # if len(lists) <= 0:
-        #     return []
-        # lstCur = [x for x in lists]
-        lstCur = []
-        # 过滤数据类型
-        for node in lists:
-            if isinstance(node,ListNode):
-                lstCur.append(node)
-        if len(lstCur) <= 0:
+        if not lists or len(lists) <= 0:
             return []
-        isAsc = self.isAsc(lstCur)
-        # maxLen = self.getMaxLenl(lists)
-        firstNode = self.getMostNode(lstCur,isAsc)
-        
-        while len(lstCur) > 0:
-            mostCurVal = self.getMostNode(lstCur,isAsc)
+        cnt = len(lists)
+        gap = 1
+        while gap < cnt:
+            i = 0
+            while i+gap < cnt:
+                lst1 = lists[i]
+                lst2 = lists[i+gap]
+                if lst1 and lst2:
+                    lists[i]  = self.mergeTwoLists(lst1,lst2)
+                elif lst1:
+                    lists[i] = lst1
+                elif lst2:
+                    lists[i] = lst2
+                i = i+gap*2
+            gap=gap*2
+        return lists[0]
 
-            # lstCurTmp = lstCur.copy()
-            # lstCur.clear()
-            # for nd in lstCurTmp:
-            #     if nd.next != None:
-            #         lstCur.append(nd.next)
-                    # nodeT = ListNode(nd.next.val)
-                    # nodeT.next = nd.next.next
-                    # lstCur.append(nodeT)
-            lstCurT = lstCur.copy()
-            lstCurTmp = []
-            lstCur = []
-            for nd in lstCurT:
-                nodeT = ListNode(nd.val)
-                nodeT.next = None
-                lstCurTmp.append(nodeT)
-                if nd.next != None:
-                    lstCur.append(nd.next)
-            
-            isSelf = True
-            for nodeTmp in lstCurTmp:
-                node = mostCurVal
-                nodeFore = None
-                while node != None:
-                    if (isAsc and nodeTmp.val < node.val):
-                        if nodeFore !=None:
-                            nodeFore.next = nodeTmp
-                        if  nodeTmp != node:
-                            nodeTmp.next = node
-                        break
-                    nodeFore = node
-                    node = node.next
-                if node == None and nodeFore !=None and not isSelf:
-                    nodeFore.next = nodeTmp
-                if nodeFore.val == nodeTmp.val:
-                    isSelf = False
-        return firstNode
-
-    def isAsc(self,lists):
-        for lst in lists:
-            if lst !=None and lst.next !=None:
-                return True if lst.val < lst.next.val else False
-        return True
-
-    def getMaxLenl(self,lists):
-        maxLen = 0
-        for lst in lists:
-            maxLen = maxLen if len(lst) < maxLen else len(list)
-        return maxLen
-
-    def getMostNode(self,lstNodes,isAsc):
-        mostNode = lstNodes[0]
-        for node in lstNodes[1:]:
-            if isAsc and mostNode.val > node.val:
-                mostNode = node
-            if (not isAsc) and mostNode.val < node.val:
-                mostNode = node
-        return mostNode
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        head = ptrCur = ListNode(0)
+        while (not l1 == None) and (not l2 == None):
+            if l1.val <= l2.val:
+                ptrCur.next = l1
+                l1 = l1.next
+            else:
+                ptrCur.next = l2
+                l2=l1
+                l1=ptrCur.next.next
+            ptrCur = ptrCur.next
+        if l1 == None:
+            ptrCur.next = l2
+        else:
+            ptrCur.next = l1
+        return head.next
         
 
 if __name__ == "__main__":
